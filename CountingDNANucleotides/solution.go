@@ -2,6 +2,8 @@ package countingdnanucleotides
 
 import (
 	"strings"
+
+	definitions "github.com/el10savio/goRosalind/Definitions"
 )
 
 // Given: A DNA string s of length at most 1000 nt.
@@ -13,9 +15,9 @@ import (
 
 // Count return the letter map
 // from the given DNA string
-func Count(DNA string) map[string]int {
+func Count(DNA string) (map[string]int, error) {
 	if len(DNA) <= 0 {
-		return map[string]int{}
+		return map[string]int{}, definitions.ErrEmptyString
 	}
 
 	DNA = strings.ToUpper(DNA)
