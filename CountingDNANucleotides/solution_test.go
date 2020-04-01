@@ -7,39 +7,39 @@ import (
 )
 
 type testCase struct {
-	description string
+	Description string
 	DNA         string
-	symbols     map[string]int
+	Symbols     map[string]int
 }
 
 var testCases = []testCase{
 	testCase{
-		description: "Empty DNA string",
+		Description: "Empty DNA string",
 		DNA:         "",
-		symbols:     map[string]int{},
+		Symbols:     map[string]int{},
 	},
 	testCase{
-		description: "Basic DNA string",
+		Description: "Basic DNA string",
 		DNA:         "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC",
-		symbols:     map[string]int{"A": 20, "C": 12, "G": 17, "T": 21},
+		Symbols:     map[string]int{"A": 20, "C": 12, "G": 17, "T": 21},
 	},
 	testCase{
-		description: "Lowercase DNA string",
+		Description: "Lowercase DNA string",
 		DNA:         "agcttttcattctgactgcaacgggcaatatgtctctgtgtggattaaaaaaagagtgtctgatagcagc",
-		symbols:     map[string]int{"A": 20, "C": 12, "G": 17, "T": 21},
+		Symbols:     map[string]int{"A": 20, "C": 12, "G": 17, "T": 21},
 	},
 	testCase{
-		description: "Large DNA string",
+		Description: "Large DNA string",
 		DNA:         "GGTAGACGATCATTCAATCGATGACCTAGCTCTGGTCCGGGGTATATGCTAGCGAGACAGCACGACTAATTACGCATTTCCTTACACTTGCTGGGAATAAGAAGTAAGCAAACTATGAACAATAGGATTTTAGGCGTGGTAAACCCCACGACGTAGTGCCGGTACGGGGTAGTCAACCCGTTCCAACACATGTATTTAGAAGTGAGTGCTGCTCCCCGGCCGAGTAGCGGACCGACCCTCGTTGGCTTTCCAGGACGTCGTGTTGCAATTCAAGTGCGCTGAAGGTCAGTCAATGAGCTGGGTGCCCCTCCACTCGATAGCCCAAATCATCCGGTGGTGTTAACGACTCGATTTAGTTTCATTAAGGAAGTCGTCGGACCCGCGCTAAACCACACAGGCTGTATACGACGTGGGCGGATCGTGCCGGTGAATATCGGCGAATGTGTGCGAACCCATAAGTTAACATACTTTAGGCTTGTCGAGCCTAATCTAAGTTTGCTTCACTCGAGCAACCCAGCCTTGGTGCTATTATGCACCAATTTGTCGGCGAGACTGTTTTCGAACTTCTGCAACTTTCGTGTTGCGTTCACGATATGGCGAGTAGTTTACCGTTCAGTGCTCGGGTTGCGTTATCCGTCCAAAGTAATTTCCGTTGCAGTCGGTGTTTGTCGTTTCGCGCACAAATTAATTCTGCTAGAGATACGATAGCTTATTACGCCACAGACCCCACTAACTCCATAATCCACCGAAGGGGCTTGCTCCTCCCAAGTCCTAAGAGCGCTTGATTTAACGATCAAGCATCGACAACGACTTCGCTTTTCTGGTAGAAACGCAACAGGGCGGTCGAGTGGATGGAACGATATGAATATGCGATCTCGTCTAATATACACCAAATTCCTCCAGAGCAGTCTCCGTGAGGTAGCCGGCCGTGCCATAGAAATGACGGCTCTCCGTCGCGCTGTTCCTATAGAATTATTGATTGC",
-		symbols:     map[string]int{"A": 239, "C": 245, "G": 243, "T": 256},
+		Symbols:     map[string]int{"A": 239, "C": 245, "G": 243, "T": 256},
 	},
 }
 
 func Test(t *testing.T) {
 	for _, tC := range testCases {
-		t.Run(tC.description, func(t *testing.T) {
-			symbolsActual := Count(tC.DNA)
-			assert.Equal(t, tC.symbols, symbolsActual)
+		t.Run(tC.Description, func(t *testing.T) {
+			SymbolsActual := Count(tC.DNA)
+			assert.Equal(t, tC.Symbols, SymbolsActual)
 		})
 	}
 }
