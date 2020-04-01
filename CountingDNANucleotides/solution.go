@@ -4,6 +4,15 @@ import (
 	"strings"
 )
 
+// Given: A DNA string s of length at most 1000 nt.
+//
+// Return: Four integers (separated by spaces)
+// counting the respective number of times
+// that the symbols 'A', 'C', 'G',
+// and 'T' occur in s.
+
+// Count return the letter map
+// from the given DNA string
 func Count(DNA string) map[string]int {
 	if len(DNA) <= 0 {
 		return map[string]int{}
