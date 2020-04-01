@@ -45,5 +45,5 @@ func Count(DNA string) (map[string]int, error) {
 		}
 	}
 
-	return symbols
+	return symbols, nil
 }

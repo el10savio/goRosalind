@@ -3,6 +3,7 @@ package countingdnanucleotides
 import (
 	"testing"
 
+	definitions "github.com/el10savio/goRosalind/Definitions"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -10,6 +11,7 @@ type testCase struct {
 	Description string
 	DNA         string
 	Symbols     map[string]int
+	Error       error
 }
 
 var testCases = []testCase{
@@ -17,28 +19,33 @@ var testCases = []testCase{
 		Description: "Empty DNA string",
 		DNA:         "",
 		Symbols:     map[string]int{},
+		Error:       definitions.ErrEmptyString,
 	},
 	testCase{
 		Description: "Basic DNA string",
 		DNA:         "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC",
 		Symbols:     map[string]int{"A": 20, "C": 12, "G": 17, "T": 21},
+		Error:       nil,
 	},
 	testCase{
 		Description: "Lowercase DNA string",
 		DNA:         "agcttttcattctgactgcaacgggcaatatgtctctgtgtggattaaaaaaagagtgtctgatagcagc",
 		Symbols:     map[string]int{"A": 20, "C": 12, "G": 17, "T": 21},
+		Error:       nil,
 	},
 	testCase{
 		Description: "Large DNA string",
 		DNA:         "GGTAGACGATCATTCAATCGATGACCTAGCTCTGGTCCGGGGTATATGCTAGCGAGACAGCACGACTAATTACGCATTTCCTTACACTTGCTGGGAATAAGAAGTAAGCAAACTATGAACAATAGGATTTTAGGCGTGGTAAACCCCACGACGTAGTGCCGGTACGGGGTAGTCAACCCGTTCCAACACATGTATTTAGAAGTGAGTGCTGCTCCCCGGCCGAGTAGCGGACCGACCCTCGTTGGCTTTCCAGGACGTCGTGTTGCAATTCAAGTGCGCTGAAGGTCAGTCAATGAGCTGGGTGCCCCTCCACTCGATAGCCCAAATCATCCGGTGGTGTTAACGACTCGATTTAGTTTCATTAAGGAAGTCGTCGGACCCGCGCTAAACCACACAGGCTGTATACGACGTGGGCGGATCGTGCCGGTGAATATCGGCGAATGTGTGCGAACCCATAAGTTAACATACTTTAGGCTTGTCGAGCCTAATCTAAGTTTGCTTCACTCGAGCAACCCAGCCTTGGTGCTATTATGCACCAATTTGTCGGCGAGACTGTTTTCGAACTTCTGCAACTTTCGTGTTGCGTTCACGATATGGCGAGTAGTTTACCGTTCAGTGCTCGGGTTGCGTTATCCGTCCAAAGTAATTTCCGTTGCAGTCGGTGTTTGTCGTTTCGCGCACAAATTAATTCTGCTAGAGATACGATAGCTTATTACGCCACAGACCCCACTAACTCCATAATCCACCGAAGGGGCTTGCTCCTCCCAAGTCCTAAGAGCGCTTGATTTAACGATCAAGCATCGACAACGACTTCGCTTTTCTGGTAGAAACGCAACAGGGCGGTCGAGTGGATGGAACGATATGAATATGCGATCTCGTCTAATATACACCAAATTCCTCCAGAGCAGTCTCCGTGAGGTAGCCGGCCGTGCCATAGAAATGACGGCTCTCCGTCGCGCTGTTCCTATAGAATTATTGATTGC",
 		Symbols:     map[string]int{"A": 239, "C": 245, "G": 243, "T": 256},
+		Error:       nil,
 	},
 }
 
-func Test(t *testing.T) {
+func TestCount(t *testing.T) {
 	for _, tC := range testCases {
 		t.Run(tC.Description, func(t *testing.T) {
-			SymbolsActual := Count(tC.DNA)
+			SymbolsActual, ErrorActual := Count(tC.DNA)
+			assert.Equal(t, tC.Error, ErrorActual)
 			assert.Equal(t, tC.Symbols, SymbolsActual)
 		})
 	}
