@@ -6,7 +6,7 @@ import (
 	definitions "github.com/el10savio/goRosalind/Definitions"
 )
 
-// Given: A DNA string t having length at 
+// Given: A DNA string t having length at
 // most 1000 nt.
 //
 // Return: The transcribed RNA string of t.
@@ -17,6 +17,7 @@ func Transcribe(DNA string) (string, error) {
 		return "", definitions.ErrEmptyString
 	}
 
+	DNA = strings.Trim(DNA, " ")
 	DNA = strings.ToUpper(DNA)
 	RNA := strings.ReplaceAll(DNA, "T", "U")
 

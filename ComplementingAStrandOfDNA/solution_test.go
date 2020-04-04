@@ -34,6 +34,12 @@ var testCases = []testCase{
 		Error:             nil,
 	},
 	testCase{
+		Description:       "Untrimmed DNA string",
+		DNA:               "AAAACCCGGT  ",
+		ReverseComplement: "ACCGGGTTTT",
+		Error:             nil,
+	},
+	testCase{
 		Description:       "Invalid DNA string",
 		DNA:               "AAAACCXHGT",
 		ReverseComplement: "",

@@ -20,6 +20,7 @@ func Count(DNA string) (map[string]int, error) {
 		return map[string]int{}, definitions.ErrEmptyString
 	}
 
+	DNA = strings.Trim(DNA, " ")
 	DNA = strings.ToUpper(DNA)
 
 	symbols := map[string]int{

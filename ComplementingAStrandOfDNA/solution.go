@@ -16,6 +16,7 @@ func Complement(DNA string) (string, error) {
 		return "", definitions.ErrEmptyString
 	}
 
+	DNA = strings.Trim(DNA, " ")
 	DNA = strings.ToUpper(DNA)
 	reversed := reverse(DNA)
 
