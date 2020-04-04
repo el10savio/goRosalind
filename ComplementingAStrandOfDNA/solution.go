@@ -42,18 +42,18 @@ func complement(sentence string) (string, error) {
 		rune('A'): rune('T'),
 		rune('T'): rune('A'),
 		rune('C'): rune('G'),
-		rune('G'): rune('H'),
+		rune('G'): rune('C'),
 	}
 
 	runes := []rune(sentence)
+	runeComplemented := make([]rune, len(runes))
 
-	for _, rune := range runes {
-		if complement, ok := complements[rune]; !ok {
+	for index, runeValue := range runes {
+		if _, ok := complements[runeValue]; !ok {
 			return "", definitions.ErrInvalidDNAString
 		}
-		rune = complements[rune]
-
+		runeComplemented[index] = complements[runeValue]
 	}
 
-	return string(runes), nil
+	return string(runeComplemented), nil
 }
