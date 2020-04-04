@@ -21,6 +21,18 @@ var testCases = []testCase{
 		ReverseComplement: "",
 		Error:             definitions.ErrEmptyString,
 	},
+	testCase{
+		Description:       "Basic DNA string",
+		DNA:               "AAAACCCGGT",
+		ReverseComplement: "ACCGGGTTTT",
+		Error:             nil,
+	},
+	testCase{
+		Description:       "Lowercase DNA string",
+		DNA:               "aaaacccggt",
+		ReverseComplement: "ACCGGGTTTT",
+		Error:             nil,
+	},
 }
 
 func TestComplement(t *testing.T) {
