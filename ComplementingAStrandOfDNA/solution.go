@@ -6,11 +6,13 @@ import (
 	definitions "github.com/el10savio/goRosalind/Definitions"
 )
 
-// Given:
+// Given: A DNA string s of length
+// at most 1000 bp.
 //
-// Return:
+// Return: The reverse complement sc of s.
 
-// Complement
+// Complement reverses the symbols then
+// takes the complement of each symbol
 func Complement(DNA string) (string, error) {
 	if len(DNA) <= 0 {
 		return "", definitions.ErrEmptyString
