@@ -37,6 +37,13 @@ var testCases = []testCase{
 		Total:       19,
 		Error:       nil,
 	},
+	testCase{
+		Description: "Large Total() Parameters",
+		Months:      34,
+		Litter:      2,
+		Total:       5726623061,
+		Error:       nil,
+	},
 }
 
 func TestTotal(t *testing.T) {

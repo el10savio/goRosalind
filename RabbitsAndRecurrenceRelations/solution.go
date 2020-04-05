@@ -21,7 +21,7 @@ func fibonacci(n int, init int) int {
 	if n == 1 {
 		return 1
 	}
-	
+
 	if n == 2 {
 		return init
 	}
