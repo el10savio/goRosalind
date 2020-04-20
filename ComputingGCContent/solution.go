@@ -10,8 +10,29 @@ import (
 //
 // Return:
 
-// Compute
-func Compute(label string, DNA string) (string, error) {
+// FASTA ...
+type FASTA struct {
+	Label string
+	DNA   string
+}
+
+// Compute ...
+func Compute(FASTAValues []FASTA) (string, float64, error) {
+	GCContents := make([]float64, len(FASTAValues))
+
+	for index, fasta := range FASTAValues {
+		GCContent, err := compute(fasta.Label, fasta.DNA)
+		if err != nil {
+			return "", 0.0, err
+		}
+		GCContents[index] = GCContent
+	}
+
+	// find max & return index
+}
+
+// compute ...
+func compute(label string, DNA string) (float64, error) {
 	if len(DNA) <= 0 {
 		return "", definitions.ErrEmptyString
 	}
@@ -21,12 +42,13 @@ func Compute(label string, DNA string) (string, error) {
 	}
 
 	DNA = strings.ToLower(DNA)
-	gcContent := GCContent(DNA)
+	GCContent := gcContent(DNA)
 
-	return "", nil
+	return GCContent, nil
 }
 
-func GCContent(DNA string) float64 {
+// gcContent ...
+func gcContent(DNA string) float64 {
 	gcCount := 0
 	runes := []rune(DNA)
 
