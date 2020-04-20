@@ -18,6 +18,10 @@ type FASTA struct {
 
 // Compute ...
 func Compute(FASTAValues []FASTA) (string, float64, error) {
+	if len(FASTAValues) <= 0 {
+		return "", 0.0, definitions.ErrEmptyList
+	}
+
 	GCContents := make([]float64, len(FASTAValues))
 
 	for index, fasta := range FASTAValues {
@@ -34,11 +38,11 @@ func Compute(FASTAValues []FASTA) (string, float64, error) {
 // compute ...
 func compute(label string, DNA string) (float64, error) {
 	if len(DNA) <= 0 {
-		return "", definitions.ErrEmptyString
+		return 0.0 definitions.ErrEmptyString
 	}
 
 	if len(label) <= 0 {
-		return "", definitions.ErrEmptyLabel
+		return 0.0, definitions.ErrEmptyLabel
 	}
 
 	DNA = strings.ToLower(DNA)
