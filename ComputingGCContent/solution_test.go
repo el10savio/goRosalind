@@ -11,7 +11,7 @@ type testCase struct {
 	Description       string
 	FASTAValues       []FASTA
 	ExpectedLabel     string
-	ExpectedGCContent float64
+	ExpectedGCContent float32
 	ExpectedError     error
 }
 
@@ -22,6 +22,54 @@ var testCases = []testCase{
 		ExpectedLabel:     "",
 		ExpectedGCContent: 0.0,
 		ExpectedError:     definitions.ErrEmptyList,
+	},
+	testCase{
+		Description: "Empty DNA",
+		FASTAValues: []FASTA{
+			FASTA{
+				Label: ">Rosalind_6404",
+				DNA:   "",
+			},
+		},
+		ExpectedLabel:     "",
+		ExpectedGCContent: 0.0,
+		ExpectedError:     definitions.ErrEmptyString,
+	},
+	testCase{
+		Description: "Empty Label",
+		FASTAValues: []FASTA{
+			FASTA{
+				Label: "",
+				DNA:   "CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCCTCCCACTAATAATTCTGAGG",
+			},
+		},
+		ExpectedLabel:     "",
+		ExpectedGCContent: 0.0,
+		ExpectedError:     definitions.ErrEmptyLabel,
+	},
+	testCase{
+		Description: "Basic List",
+		FASTAValues: []FASTA{
+			FASTA{
+				Label: ">Rosalind_6404",
+				DNA:   "CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCCTCCCACTAATAATTCTGAGG",
+			},
+			FASTA{
+				Label: ">Rosalind_5959",
+				DNA:   "CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCTATATCCATTTGTCAGCAGACACGC",
+			},
+			FASTA{
+				Label: ">Rosalind_5951",
+				DNA:   "AGCTATAG",
+			},
+			FASTA{
+				Label: ">Rosalind_0808",
+				DNA:   "CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACTGGGAACCTGCGGGCAGTAGGTGGAAT",
+			},
+		},
+		ExpectedLabel:     "Rosalind_0808",
+		ExpectedGCContent: 60.919540,
+		ExpectedError:     nil,
 	},
 }
 
