@@ -76,4 +76,5 @@ func Max(slice []float64) (index int, max float64) {
 			max = element
 		}
 	}
+	return
 }

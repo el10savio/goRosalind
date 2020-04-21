@@ -2,25 +2,36 @@ package computinggccontent
 
 import (
 	"testing"
+
+	definitions "github.com/el10savio/goRosalind/Definitions"
+	"github.com/stretchr/testify/assert"
 )
 
 type testCase struct {
 	Description       string
-	DNA               string
-	ReverseComplement string
-	Error             error
+	FASTAValues       []FASTA
+	ExpectedLabel     string
+	ExpectedGCContent float64
+	ExpectedError     error
 }
 
 var testCases = []testCase{
-	testCase{},
+	testCase{
+		Description:       "Empty List",
+		FASTAValues:       []FASTA{},
+		ExpectedLabel:     "",
+		ExpectedGCContent: 0.0,
+		ExpectedError:     definitions.ErrEmptyList,
+	},
 }
 
 func TestComplement(t *testing.T) {
 	for _, tC := range testCases {
 		t.Run(tC.Description, func(t *testing.T) {
-			// ReverseComplementActual, ErrorActual := Complement(tC.DNA)
-			// assert.Equal(t, tC.Error, ErrorActual)
-			// assert.Equal(t, tC.ReverseComplement, ReverseComplementActual)
+			LabelActual, GCContentActual, ErrorActual := Compute(tC.FASTAValues)
+			assert.Equal(t, tC.ExpectedError, ErrorActual)
+			assert.Equal(t, tC.ExpectedLabel, LabelActual)
+			assert.Equal(t, tC.ExpectedGCContent, GCContentActual)
 		})
 	}
 }
