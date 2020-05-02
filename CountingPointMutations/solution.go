@@ -34,7 +34,7 @@ func hammingDistance(first string, second string) int {
 	runesSecond := []rune(second)
 
 	for index := 0; index < len(runesFirst); index++ {
-		if runesFirst[index] == runesSecond[index] {
+		if runesFirst[index] != runesSecond[index] {
 			distance++
 		}
 	}

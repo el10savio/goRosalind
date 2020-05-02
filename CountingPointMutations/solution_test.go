@@ -21,10 +21,10 @@ var testCases = []testCase{
 		First:            "",
 		Second:           "",
 		ExpectedDistance: 0,
-		ExpectedError:    definitions.ErrEmptyList,
+		ExpectedError:    definitions.ErrEmptyString,
 	},
 	testCase{
-		Description:      "Unequal Strings",
+		Description:      "Unequal Length Strings",
 		First:            "GAGCCTACTAACGGGAT",
 		Second:           "CATCGTAATGACGGCCTGGC",
 		ExpectedDistance: 0,
@@ -56,7 +56,7 @@ var testCases = []testCase{
 func TestHammingDistance(t *testing.T) {
 	for _, tC := range testCases {
 		t.Run(tC.Description, func(t *testing.T) {
-			DistanceActual, ErrorActual := Compute(tC.First, tC.Second)
+			DistanceActual, ErrorActual := HammingDistance(tC.First, tC.Second)
 			assert.Equal(t, tC.ExpectedError, ErrorActual)
 			assert.Equal(t, tC.ExpectedDistance, DistanceActual)
 		})
