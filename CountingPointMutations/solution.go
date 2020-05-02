@@ -6,11 +6,13 @@ import (
 	definitions "github.com/el10savio/goRosalind/Definitions"
 )
 
-// Given:
+// Given: Two DNA strings s and t of equal length.
 //
-// Return:
+// Return: The Hamming distance dH(s,t).
 
-// HammingDistance ...
+// HammingDistance is a wrapper to validate the
+// input values and preprocess them before
+// calculating their hamming distance
 func HammingDistance(first string, second string) (int, error) {
 	// Check if input values are empty
 	if len(first) == 0 || len(second) == 0 {
@@ -28,6 +30,9 @@ func HammingDistance(first string, second string) (int, error) {
 	return hammingDistance(first, second), nil
 }
 
+// hammingDistance compares two strings and
+// returns how many times they are
+// different with each other
 func hammingDistance(first string, second string) int {
 	distance := 0
 	runesFirst := []rune(first)
