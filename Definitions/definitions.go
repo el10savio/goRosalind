@@ -17,4 +17,7 @@ var (
 
 	// ErrNotPositiveValue is the error in case of not positive input value
 	ErrNotPositiveValue = errors.New("not positive input value")
+
+	// ErrUnequalLength is the error in case of the input string lengths are unequal
+	ErrUnequalLength = errors.New("input string lengths are unequal")
 )
