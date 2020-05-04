@@ -24,8 +24,14 @@ func HammingDistance(first string, second string) (int, error) {
 		return 0, definitions.ErrUnequalLength
 	}
 
+	// Convert both strings to uppercase
 	first = strings.ToUpper(first)
 	second = strings.ToUpper(second)
+
+	// Check if they're equal 
+	if first == second {
+		return 0, nil
+	}
 
 	return hammingDistance(first, second), nil
 }
